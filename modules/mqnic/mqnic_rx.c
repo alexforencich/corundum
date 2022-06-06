@@ -35,6 +35,31 @@
 
 #include "mqnic.h"
 
+int mqnic_create_pool_for_ring(struct mqnic_priv *priv, struct mqnic_ring *ring, int size) {
+
+    int numa_node = 0; // FIXME: get it from device
+    struct page_pool_params pp_params = { 0 };
+
+    /* Create a page_pool and register it with rxq */
+    pp_params.order     = 0; // ilog2(size);
+    pp_params.flags     = 0; /* No-internal DMA mapping in page_pool */
+    pp_params.pool_size = size;
+    pp_params.nid       = numa_node;
+    pp_params.dev       = priv->dev;
+    pp_params.dma_dir   = DMA_FROM_DEVICE;
+
+    ring->page_pool = page_pool_create(&pp_params);
+
+    if (IS_ERR(ring->page_pool)) {
+        int err = PTR_ERR(ring->page_pool);
+        ring->page_pool = NULL;
+        dev_err(priv->mdev->dev, "Failed to alloc page pool: %d", priv->index);
+        return err;
+    }
+    return 0;
+}
+
+
 int mqnic_create_rx_ring(struct mqnic_if *interface, struct mqnic_ring **ring_ptr,
 		int index, u8 __iomem *hw_addr)
 {
@@ -220,12 +245,13 @@ void mqnic_rx_write_head_ptr(struct mqnic_ring *ring)
 void mqnic_free_rx_desc(struct mqnic_ring *ring, int index)
 {
 	struct mqnic_rx_info *rx_info = &ring->rx_info[index];
-	struct page *page = rx_info->page;
+	// struct page *page = rx_info->page;
 
 	dma_unmap_page(ring->dev, dma_unmap_addr(rx_info, dma_addr),
 			dma_unmap_len(rx_info, len), PCI_DMA_FROMDEVICE);
 	rx_info->dma_addr = 0;
-	__free_pages(page, rx_info->page_order);
+	// __free_pages(page, rx_info->page_order);
+        page_pool_put_full_page(ring->page_pool,rx_info->page,true);
 	rx_info->page = NULL;
 }
 
@@ -263,7 +289,8 @@ int mqnic_prepare_rx_desc(struct mqnic_ring *ring, int index)
 		return -1;
 	}
 
-	page = dev_alloc_pages(page_order);
+	// page = dev_alloc_pages(page_order);
+        page = page_pool_dev_alloc_pages(ring->page_pool);
 	if (unlikely(!page)) {
 		dev_err(ring->dev, "%s: failed to allocate memory on interface %d",
 				__func__, ring->interface->index);
@@ -356,7 +383,11 @@ int mqnic_process_rx_cq(struct mqnic_cq_ring *cq_ring, int napi_budget)
 			break;
 		}
 
-		skb = napi_get_frags(&cq_ring->napi);
+                // skb = napi_get_frags(&cq_ring->napi);
+                // why? dont reuse skb, alloc one for each packet
+#define  GRO_MAX_HEADER 256
+                skb = napi_alloc_skb(&cq_ring->napi,GRO_MAX_HEADER);
+
 		if (unlikely(!skb)) {
 			dev_err(dev, "%s: ring %d failed to allocate skb",
 					__func__, cq_ring->index);
@@ -394,7 +425,8 @@ int mqnic_process_rx_cq(struct mqnic_cq_ring *cq_ring, int napi_budget)
 		skb->truesize += rx_info->len;
 
 		// hand off SKB
-		napi_gro_frags(&cq_ring->napi);
+		// napi_gro_frags(&cq_ring->napi);
+                napi_gro_receive(&cq_ring->napi,skb);
 
 		rx_ring->packets++;
 		rx_ring->bytes += le16_to_cpu(cpl->len);

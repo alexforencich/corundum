@@ -507,10 +507,13 @@ int mqnic_create_netdev(struct mqnic_if *interface, struct net_device **ndev_ptr
 	}
 
 	for (k = 0; k < priv->rx_queue_count; k++) {
-		ret = mqnic_alloc_rx_ring(priv->rx_ring[k], mqnic_num_rx_queue_entries,
-				MQNIC_DESC_SIZE);
-		if (ret)
-			goto fail;
+            ret = mqnic_alloc_rx_ring(priv->rx_ring[k], mqnic_num_rx_queue_entries,
+                                      MQNIC_DESC_SIZE);
+            if (ret)
+                goto fail;
+            ret = mqnic_create_pool_for_ring(priv, priv->rx_ring[k], MQNIC_PAGE_POOL_SIZE);
+            if (ret)
+                goto fail;
 	}
 
 	for (k = 0; k < priv->rx_cpl_queue_count; k++) {

@@ -54,6 +54,10 @@
 #include <linux/i2c.h>
 #include <linux/i2c-algo-bit.h>
 
+#include <linux/skbuff.h>
+#include <net/page_pool.h>
+#define MQNIC_PAGE_POOL_SIZE 1024*8
+
 #define DRIVER_NAME "mqnic"
 #define DRIVER_VERSION "0.1"
 
@@ -274,6 +278,7 @@ struct mqnic_ring {
 	u8 __iomem *hw_addr;
 	u8 __iomem *hw_head_ptr;
 	u8 __iomem *hw_tail_ptr;
+	struct page_pool *page_pool;
 } ____cacheline_aligned_in_smp;
 
 struct mqnic_cq_ring {
@@ -634,6 +639,7 @@ void mqnic_refill_rx_buffers(struct mqnic_ring *ring);
 int mqnic_process_rx_cq(struct mqnic_cq_ring *cq_ring, int napi_budget);
 void mqnic_rx_irq(struct mqnic_cq_ring *cq);
 int mqnic_poll_rx_cq(struct napi_struct *napi, int budget);
+int mqnic_create_pool_for_ring(struct mqnic_priv *priv, struct mqnic_ring *ring_ptr, int sizce);
 
 // mqnic_ethtool.c
 extern const struct ethtool_ops mqnic_ethtool_ops;

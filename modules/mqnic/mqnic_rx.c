@@ -127,7 +127,16 @@ int mqnic_open_rx_ring(struct mqnic_ring *ring, struct mqnic_priv *priv,
 	iowrite32(MQNIC_QUEUE_CMD_SET_CONS_PTR | (ring->cons_ptr & MQNIC_QUEUE_PTR_MASK),
 			ring->hw_addr + MQNIC_QUEUE_CTRL_STATUS_REG);
 
-	mqnic_refill_rx_buffers(ring);
+	ret = mqnic_refill_rx_buffers(ring);
+	if (ret) {
+		netdev_err(priv->ndev, "failed to allocate RX buffer for RX queue index %d (of %u total) entry index %u (of %u total)",
+				ring->index, priv->rxq_count, ring->prod_ptr, ring->size);
+		if (ret == -ENOMEM)
+			netdev_err(priv->ndev, "machine might not have enough DMA-capable RAM; try to decrease number of RX channels (currently %u) and/or RX ring parameters (entries; currently %u) and/or module parameter \"num_rxq_entries\" (currently %u)",
+					priv->rxq_count, ring->size, mqnic_num_rxq_entries);
+
+		goto fail;
+	}
 
 	return 0;
 
@@ -262,7 +271,7 @@ int mqnic_prepare_rx_desc(struct mqnic_ring *ring, int index)
 	if (unlikely(!page)) {
 		dev_err(ring->dev, "%s: failed to allocate memory on interface %d",
 				__func__, ring->interface->index);
-		return -1;
+		return -ENOMEM;
 	}
 
 	// map page
@@ -289,15 +298,17 @@ int mqnic_prepare_rx_desc(struct mqnic_ring *ring, int index)
 	return 0;
 }
 
-void mqnic_refill_rx_buffers(struct mqnic_ring *ring)
+int mqnic_refill_rx_buffers(struct mqnic_ring *ring)
 {
 	u32 missing = ring->size - (ring->prod_ptr - ring->cons_ptr);
+	int ret = 0;
 
 	if (missing < 8)
-		return;
+		return 0;
 
 	for (; missing-- > 0;) {
-		if (mqnic_prepare_rx_desc(ring, ring->prod_ptr & ring->size_mask))
+		ret = mqnic_prepare_rx_desc(ring, ring->prod_ptr & ring->size_mask);
+		if (ret)
 			break;
 		ring->prod_ptr++;
 	}
@@ -305,6 +316,8 @@ void mqnic_refill_rx_buffers(struct mqnic_ring *ring)
 	// enqueue on NIC
 	dma_wmb();
 	mqnic_rx_write_prod_ptr(ring);
+
+	return ret;
 }
 
 int mqnic_process_rx_cq(struct mqnic_cq *cq, int napi_budget)

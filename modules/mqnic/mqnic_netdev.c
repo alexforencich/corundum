@@ -30,6 +30,7 @@ int mqnic_start_port(struct net_device *ndev)
 	// allocate scheduler port
 	priv->sched_port = mqnic_interface_alloc_sched_port(iface);
 	if (!priv->sched_port) {
+		netdev_err(ndev, "Failed to allocate scheduler");
 		ret = -ENOMEM;
 		goto fail;
 	}

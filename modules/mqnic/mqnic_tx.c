@@ -461,12 +461,12 @@ netdev_tx_t mqnic_start_xmit(struct sk_buff *skb, struct net_device *ndev)
 				// software checksumming failed
 				goto tx_drop_count;
 			}
-			tx_desc->tx_csum_cmd = 0;
+			tx_desc->tx.csum_cmd = 0;
 		} else {
-			tx_desc->tx_csum_cmd = cpu_to_le16(0x8000 | (csum_offset << 8) | (csum_start));
+			tx_desc->tx.csum_cmd = cpu_to_le16(0x8000 | (csum_offset << 8) | (csum_start));
 		}
 	} else {
-		tx_desc->tx_csum_cmd = 0;
+		tx_desc->tx.csum_cmd = 0;
 	}
 
 	if (shinfo->nr_frags > ring->desc_block_size - 1 || (skb->data_len && skb->data_len < 32)) {

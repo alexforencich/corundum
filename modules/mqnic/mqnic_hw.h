@@ -410,7 +410,14 @@
 
 struct mqnic_desc {
 	__le16 rsvd0;
-	__le16 tx_csum_cmd;
+	union {
+		struct {
+			__le16 csum_cmd;
+		} tx;
+		struct {
+			__le16 rsvd0;
+		} rx;
+	};
 	__le32 len;
 	__le64 addr;
 };

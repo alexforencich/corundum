@@ -98,22 +98,22 @@ set_false_path -to [get_ports {fpga_i2c_master_l qsfp_ctl_en}]
 set_output_delay 0 [get_ports {fpga_i2c_master_l qsfp_ctl_en}]
 
 # QSFP28 Interfaces
-set_property -dict {LOC BC45} [get_ports {qsfp0_rx_p[0]}] ;# MGTHRXP0_124 GTYE4_CHANNEL_X0Y4 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BC46} [get_ports {qsfp0_rx_n[0]}] ;# MGTHRXN0_124 GTYE4_CHANNEL_X0Y4 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BF42} [get_ports {qsfp0_tx_p[0]}] ;# MGTHTXP0_124 GTYE4_CHANNEL_X0Y4 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BF43} [get_ports {qsfp0_tx_n[0]}] ;# MGTHTXN0_124 GTYE4_CHANNEL_X0Y4 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BA45} [get_ports {qsfp0_rx_p[1]}] ;# MGTHRXP1_124 GTYE4_CHANNEL_X0Y5 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BA46} [get_ports {qsfp0_rx_n[1]}] ;# MGTHRXN1_124 GTYE4_CHANNEL_X0Y5 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BD42} [get_ports {qsfp0_tx_p[1]}] ;# MGTHTXP1_124 GTYE4_CHANNEL_X0Y5 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BD43} [get_ports {qsfp0_tx_n[1]}] ;# MGTHTXN1_124 GTYE4_CHANNEL_X0Y5 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC AW45} [get_ports {qsfp0_rx_p[2]}] ;# MGTHRXP2_124 GTYE4_CHANNEL_X0Y6 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC AW46} [get_ports {qsfp0_rx_n[2]}] ;# MGTHRXN2_124 GTYE4_CHANNEL_X0Y6 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BB42} [get_ports {qsfp0_tx_p[2]}] ;# MGTHTXP2_124 GTYE4_CHANNEL_X0Y6 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC BB43} [get_ports {qsfp0_tx_n[2]}] ;# MGTHTXN2_124 GTYE4_CHANNEL_X0Y6 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC AV43} [get_ports {qsfp0_rx_p[3]}] ;# MGTHRXP3_124 GTYE4_CHANNEL_X0Y7 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC AV44} [get_ports {qsfp0_rx_n[3]}] ;# MGTHRXN3_124 GTYE4_CHANNEL_X0Y7 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC AW40} [get_ports {qsfp0_tx_p[3]}] ;# MGTHTXP3_124 GTYE4_CHANNEL_X0Y7 / GTYE4_COMMON_X0Y1
-set_property -dict {LOC AW41} [get_ports {qsfp0_tx_n[3]}] ;# MGTHTXN3_124 GTYE4_CHANNEL_X0Y7 / GTYE4_COMMON_X0Y1
+set_property -dict {LOC BC45} [get_ports {qsfp0_rx_p[0]}] ;# MGTHRXP0_124 GTYE3_CHANNEL_X0Y0 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BC46} [get_ports {qsfp0_rx_n[0]}] ;# MGTHRXN0_124 GTYE3_CHANNEL_X0Y0 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BF42} [get_ports {qsfp0_tx_p[0]}] ;# MGTHTXP0_124 GTYE3_CHANNEL_X0Y0 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BF43} [get_ports {qsfp0_tx_n[0]}] ;# MGTHTXN0_124 GTYE3_CHANNEL_X0Y0 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BA45} [get_ports {qsfp0_rx_p[1]}] ;# MGTHRXP1_124 GTYE3_CHANNEL_X0Y1 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BA46} [get_ports {qsfp0_rx_n[1]}] ;# MGTHRXN1_124 GTYE3_CHANNEL_X0Y1 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BD42} [get_ports {qsfp0_tx_p[1]}] ;# MGTHTXP1_124 GTYE3_CHANNEL_X0Y1 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BD43} [get_ports {qsfp0_tx_n[1]}] ;# MGTHTXN1_124 GTYE3_CHANNEL_X0Y1 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC AW45} [get_ports {qsfp0_rx_p[2]}] ;# MGTHRXP2_124 GTYE3_CHANNEL_X0Y2 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC AW46} [get_ports {qsfp0_rx_n[2]}] ;# MGTHRXN2_124 GTYE3_CHANNEL_X0Y2 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BB42} [get_ports {qsfp0_tx_p[2]}] ;# MGTHTXP2_124 GTYE3_CHANNEL_X0Y2 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC BB43} [get_ports {qsfp0_tx_n[2]}] ;# MGTHTXN2_124 GTYE3_CHANNEL_X0Y2 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC AV43} [get_ports {qsfp0_rx_p[3]}] ;# MGTHRXP3_124 GTYE3_CHANNEL_X0Y3 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC AV44} [get_ports {qsfp0_rx_n[3]}] ;# MGTHRXN3_124 GTYE3_CHANNEL_X0Y3 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC AW40} [get_ports {qsfp0_tx_p[3]}] ;# MGTHTXP3_124 GTYE3_CHANNEL_X0Y3 / GTYE3_COMMON_X0Y0
+set_property -dict {LOC AW41} [get_ports {qsfp0_tx_n[3]}] ;# MGTHTXN3_124 GTYE3_CHANNEL_X0Y3 / GTYE3_COMMON_X0Y0
 set_property -dict {LOC BA40} [get_ports qsfp0_mgt_refclk_b0_p] ;# MGTREFCLK0P_124 from Si5338 B ch 0
 set_property -dict {LOC BA41} [get_ports qsfp0_mgt_refclk_b0_n] ;# MGTREFCLK0N_124 from Si5338 B ch 0
 #set_property -dict {LOC AY38} [get_ports qsfp0_mgt_refclk_b1_p] ;# MGTREFCLK1P_124 from Si5338 B ch 1
@@ -141,22 +141,22 @@ set_output_delay 0 [get_ports {qsfp0_i2c_scl qsfp0_i2c_sda}]
 set_false_path -from [get_ports {qsfp0_i2c_scl qsfp0_i2c_sda}]
 set_input_delay 0 [get_ports {qsfp0_i2c_scl qsfp0_i2c_sda}]
 
-set_property -dict {LOC AN45} [get_ports {qsfp1_rx_p[0]}] ;# MGTHRXP0_126 GTYE4_CHANNEL_X0Y12 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AN46} [get_ports {qsfp1_rx_n[0]}] ;# MGTHRXN0_126 GTYE4_CHANNEL_X0Y12 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AN40} [get_ports {qsfp1_tx_p[0]}] ;# MGTHTXP0_126 GTYE4_CHANNEL_X0Y12 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AN41} [get_ports {qsfp1_tx_n[0]}] ;# MGTHTXN0_126 GTYE4_CHANNEL_X0Y12 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AM43} [get_ports {qsfp1_rx_p[1]}] ;# MGTHRXP1_126 GTYE4_CHANNEL_X0Y13 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AM44} [get_ports {qsfp1_rx_n[1]}] ;# MGTHRXN1_126 GTYE4_CHANNEL_X0Y13 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AM38} [get_ports {qsfp1_tx_p[1]}] ;# MGTHTXP1_126 GTYE4_CHANNEL_X0Y13 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AM39} [get_ports {qsfp1_tx_n[1]}] ;# MGTHTXN1_126 GTYE4_CHANNEL_X0Y13 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AL45} [get_ports {qsfp1_rx_p[2]}] ;# MGTHRXP2_126 GTYE4_CHANNEL_X0Y14 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AL46} [get_ports {qsfp1_rx_n[2]}] ;# MGTHRXN2_126 GTYE4_CHANNEL_X0Y14 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AL40} [get_ports {qsfp1_tx_p[2]}] ;# MGTHTXP2_126 GTYE4_CHANNEL_X0Y14 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AL41} [get_ports {qsfp1_tx_n[2]}] ;# MGTHTXN2_126 GTYE4_CHANNEL_X0Y14 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AK43} [get_ports {qsfp1_rx_p[3]}] ;# MGTHRXP3_126 GTYE4_CHANNEL_X0Y15 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AK44} [get_ports {qsfp1_rx_n[3]}] ;# MGTHRXN3_126 GTYE4_CHANNEL_X0Y15 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AK38} [get_ports {qsfp1_tx_p[3]}] ;# MGTHTXP3_126 GTYE4_CHANNEL_X0Y15 / GTYE4_COMMON_X0Y3
-set_property -dict {LOC AK39} [get_ports {qsfp1_tx_n[3]}] ;# MGTHTXN3_126 GTYE4_CHANNEL_X0Y15 / GTYE4_COMMON_X0Y3
+set_property -dict {LOC AN45} [get_ports {qsfp1_rx_p[0]}] ;# MGTHRXP0_126 GTYE3_CHANNEL_X0Y8 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AN46} [get_ports {qsfp1_rx_n[0]}] ;# MGTHRXN0_126 GTYE3_CHANNEL_X0Y8 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AN40} [get_ports {qsfp1_tx_p[0]}] ;# MGTHTXP0_126 GTYE3_CHANNEL_X0Y8 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AN41} [get_ports {qsfp1_tx_n[0]}] ;# MGTHTXN0_126 GTYE3_CHANNEL_X0Y8 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AM43} [get_ports {qsfp1_rx_p[1]}] ;# MGTHRXP1_126 GTYE3_CHANNEL_X0Y9 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AM44} [get_ports {qsfp1_rx_n[1]}] ;# MGTHRXN1_126 GTYE3_CHANNEL_X0Y9 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AM38} [get_ports {qsfp1_tx_p[1]}] ;# MGTHTXP1_126 GTYE3_CHANNEL_X0Y9 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AM39} [get_ports {qsfp1_tx_n[1]}] ;# MGTHTXN1_126 GTYE3_CHANNEL_X0Y9 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AL45} [get_ports {qsfp1_rx_p[2]}] ;# MGTHRXP2_126 GTYE3_CHANNEL_X0Y10 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AL46} [get_ports {qsfp1_rx_n[2]}] ;# MGTHRXN2_126 GTYE3_CHANNEL_X0Y10 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AL40} [get_ports {qsfp1_tx_p[2]}] ;# MGTHTXP2_126 GTYE3_CHANNEL_X0Y10 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AL41} [get_ports {qsfp1_tx_n[2]}] ;# MGTHTXN2_126 GTYE3_CHANNEL_X0Y10 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AK43} [get_ports {qsfp1_rx_p[3]}] ;# MGTHRXP3_126 GTYE3_CHANNEL_X0Y11 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AK44} [get_ports {qsfp1_rx_n[3]}] ;# MGTHRXN3_126 GTYE3_CHANNEL_X0Y11 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AK38} [get_ports {qsfp1_tx_p[3]}] ;# MGTHTXP3_126 GTYE3_CHANNEL_X0Y11 / GTYE3_COMMON_X0Y2
+set_property -dict {LOC AK39} [get_ports {qsfp1_tx_n[3]}] ;# MGTHTXN3_126 GTYE3_CHANNEL_X0Y11 / GTYE3_COMMON_X0Y2
 set_property -dict {LOC AR36} [get_ports qsfp1_mgt_refclk_b0_p] ;# MGTREFCLK0P_126 from Si5338 B ch 0
 set_property -dict {LOC AR37} [get_ports qsfp1_mgt_refclk_b0_n] ;# MGTREFCLK0N_126 from Si5338 B ch 0
 #set_property -dict {LOC AN36} [get_ports qsfp1_mgt_refclk_b1_p] ;# MGTREFCLK1P_126 from Si5338 B ch 1
@@ -184,22 +184,22 @@ set_output_delay 0 [get_ports {qsfp1_i2c_scl qsfp1_i2c_sda}]
 set_false_path -from [get_ports {qsfp1_i2c_scl qsfp1_i2c_sda}]
 set_input_delay 0 [get_ports {qsfp1_i2c_scl qsfp1_i2c_sda}]
 
-set_property -dict {LOC AA45} [get_ports {qsfp2_rx_p[0]}] ;# MGTHRXP0_129 GTYE4_CHANNEL_X0Y24 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC AA46} [get_ports {qsfp2_rx_n[0]}] ;# MGTHRXN0_129 GTYE4_CHANNEL_X0Y24 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC AA40} [get_ports {qsfp2_tx_p[0]}] ;# MGTHTXP0_129 GTYE4_CHANNEL_X0Y24 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC AA41} [get_ports {qsfp2_tx_n[0]}] ;# MGTHTXN0_129 GTYE4_CHANNEL_X0Y24 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC Y43 } [get_ports {qsfp2_rx_p[1]}] ;# MGTHRXP1_129 GTYE4_CHANNEL_X0Y25 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC Y44 } [get_ports {qsfp2_rx_n[1]}] ;# MGTHRXN1_129 GTYE4_CHANNEL_X0Y25 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC Y38 } [get_ports {qsfp2_tx_p[1]}] ;# MGTHTXP1_129 GTYE4_CHANNEL_X0Y25 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC Y39 } [get_ports {qsfp2_tx_n[1]}] ;# MGTHTXN1_129 GTYE4_CHANNEL_X0Y25 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC W45 } [get_ports {qsfp2_rx_p[2]}] ;# MGTHRXP2_129 GTYE4_CHANNEL_X0Y26 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC W46 } [get_ports {qsfp2_rx_n[2]}] ;# MGTHRXN2_129 GTYE4_CHANNEL_X0Y26 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC W40 } [get_ports {qsfp2_tx_p[2]}] ;# MGTHTXP2_129 GTYE4_CHANNEL_X0Y26 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC W41 } [get_ports {qsfp2_tx_n[2]}] ;# MGTHTXN2_129 GTYE4_CHANNEL_X0Y26 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC V43 } [get_ports {qsfp2_rx_p[3]}] ;# MGTHRXP3_129 GTYE4_CHANNEL_X0Y27 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC V44 } [get_ports {qsfp2_rx_n[3]}] ;# MGTHRXN3_129 GTYE4_CHANNEL_X0Y27 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC V38 } [get_ports {qsfp2_tx_p[3]}] ;# MGTHTXP3_129 GTYE4_CHANNEL_X0Y27 / GTYE4_COMMON_X0Y6
-set_property -dict {LOC V39 } [get_ports {qsfp2_tx_n[3]}] ;# MGTHTXN3_129 GTYE4_CHANNEL_X0Y27 / GTYE4_COMMON_X0Y6
+set_property -dict {LOC AA45} [get_ports {qsfp2_rx_p[0]}] ;# MGTHRXP0_129 GTYE3_CHANNEL_X0Y20 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC AA46} [get_ports {qsfp2_rx_n[0]}] ;# MGTHRXN0_129 GTYE3_CHANNEL_X0Y20 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC AA40} [get_ports {qsfp2_tx_p[0]}] ;# MGTHTXP0_129 GTYE3_CHANNEL_X0Y20 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC AA41} [get_ports {qsfp2_tx_n[0]}] ;# MGTHTXN0_129 GTYE3_CHANNEL_X0Y20 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC Y43 } [get_ports {qsfp2_rx_p[1]}] ;# MGTHRXP1_129 GTYE3_CHANNEL_X0Y21 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC Y44 } [get_ports {qsfp2_rx_n[1]}] ;# MGTHRXN1_129 GTYE3_CHANNEL_X0Y21 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC Y38 } [get_ports {qsfp2_tx_p[1]}] ;# MGTHTXP1_129 GTYE3_CHANNEL_X0Y21 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC Y39 } [get_ports {qsfp2_tx_n[1]}] ;# MGTHTXN1_129 GTYE3_CHANNEL_X0Y21 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC W45 } [get_ports {qsfp2_rx_p[2]}] ;# MGTHRXP2_129 GTYE3_CHANNEL_X0Y22 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC W46 } [get_ports {qsfp2_rx_n[2]}] ;# MGTHRXN2_129 GTYE3_CHANNEL_X0Y22 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC W40 } [get_ports {qsfp2_tx_p[2]}] ;# MGTHTXP2_129 GTYE3_CHANNEL_X0Y22 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC W41 } [get_ports {qsfp2_tx_n[2]}] ;# MGTHTXN2_129 GTYE3_CHANNEL_X0Y22 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC V43 } [get_ports {qsfp2_rx_p[3]}] ;# MGTHRXP3_129 GTYE3_CHANNEL_X0Y23 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC V44 } [get_ports {qsfp2_rx_n[3]}] ;# MGTHRXN3_129 GTYE3_CHANNEL_X0Y23 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC V38 } [get_ports {qsfp2_tx_p[3]}] ;# MGTHTXP3_129 GTYE3_CHANNEL_X0Y23 / GTYE3_COMMON_X0Y5
+set_property -dict {LOC V39 } [get_ports {qsfp2_tx_n[3]}] ;# MGTHTXN3_129 GTYE3_CHANNEL_X0Y23 / GTYE3_COMMON_X0Y5
 set_property -dict {LOC AC36} [get_ports qsfp2_mgt_refclk_b0_p] ;# MGTREFCLK0P_129 from Si5338 B ch 0
 set_property -dict {LOC AC37} [get_ports qsfp2_mgt_refclk_b0_n] ;# MGTREFCLK0N_129 from Si5338 B ch 0
 #set_property -dict {LOC AA36} [get_ports qsfp2_mgt_refclk_b2_p] ;# MGTREFCLK1P_129 from Si5338 B ch 2
@@ -227,22 +227,22 @@ set_output_delay 0 [get_ports {qsfp2_i2c_scl qsfp2_i2c_sda}]
 set_false_path -from [get_ports {qsfp2_i2c_scl qsfp2_i2c_sda}]
 set_input_delay 0 [get_ports {qsfp2_i2c_scl qsfp2_i2c_sda}]
 
-set_property -dict {LOC N45 } [get_ports {qsfp3_rx_p[0]}] ;# MGTHRXP0_131 GTYE4_CHANNEL_X0Y32 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC N46 } [get_ports {qsfp3_rx_n[0]}] ;# MGTHRXN0_131 GTYE4_CHANNEL_X0Y32 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC N40 } [get_ports {qsfp3_tx_p[0]}] ;# MGTHTXP0_131 GTYE4_CHANNEL_X0Y32 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC N41 } [get_ports {qsfp3_tx_n[0]}] ;# MGTHTXN0_131 GTYE4_CHANNEL_X0Y32 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC M43 } [get_ports {qsfp3_rx_p[1]}] ;# MGTHRXP1_131 GTYE4_CHANNEL_X0Y33 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC M44 } [get_ports {qsfp3_rx_n[1]}] ;# MGTHRXN1_131 GTYE4_CHANNEL_X0Y33 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC M38 } [get_ports {qsfp3_tx_p[1]}] ;# MGTHTXP1_131 GTYE4_CHANNEL_X0Y33 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC M39 } [get_ports {qsfp3_tx_n[1]}] ;# MGTHTXN1_131 GTYE4_CHANNEL_X0Y33 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC L45 } [get_ports {qsfp3_rx_p[2]}] ;# MGTHRXP2_131 GTYE4_CHANNEL_X0Y34 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC L46 } [get_ports {qsfp3_rx_n[2]}] ;# MGTHRXN2_131 GTYE4_CHANNEL_X0Y34 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC L40 } [get_ports {qsfp3_tx_p[2]}] ;# MGTHTXP2_131 GTYE4_CHANNEL_X0Y34 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC L41 } [get_ports {qsfp3_tx_n[2]}] ;# MGTHTXN2_131 GTYE4_CHANNEL_X0Y34 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC K43 } [get_ports {qsfp3_rx_p[3]}] ;# MGTHRXP3_131 GTYE4_CHANNEL_X0Y35 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC K44 } [get_ports {qsfp3_rx_n[3]}] ;# MGTHRXN3_131 GTYE4_CHANNEL_X0Y35 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC J40 } [get_ports {qsfp3_tx_p[3]}] ;# MGTHTXP3_131 GTYE4_CHANNEL_X0Y35 / GTYE4_COMMON_X0Y8
-set_property -dict {LOC J41 } [get_ports {qsfp3_tx_n[3]}] ;# MGTHTXN3_131 GTYE4_CHANNEL_X0Y35 / GTYE4_COMMON_X0Y8
+set_property -dict {LOC N45 } [get_ports {qsfp3_rx_p[0]}] ;# MGTHRXP0_131 GTYE3_CHANNEL_X0Y28 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC N46 } [get_ports {qsfp3_rx_n[0]}] ;# MGTHRXN0_131 GTYE3_CHANNEL_X0Y28 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC N40 } [get_ports {qsfp3_tx_p[0]}] ;# MGTHTXP0_131 GTYE3_CHANNEL_X0Y28 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC N41 } [get_ports {qsfp3_tx_n[0]}] ;# MGTHTXN0_131 GTYE3_CHANNEL_X0Y28 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC M43 } [get_ports {qsfp3_rx_p[1]}] ;# MGTHRXP1_131 GTYE3_CHANNEL_X0Y29 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC M44 } [get_ports {qsfp3_rx_n[1]}] ;# MGTHRXN1_131 GTYE3_CHANNEL_X0Y29 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC M38 } [get_ports {qsfp3_tx_p[1]}] ;# MGTHTXP1_131 GTYE3_CHANNEL_X0Y29 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC M39 } [get_ports {qsfp3_tx_n[1]}] ;# MGTHTXN1_131 GTYE3_CHANNEL_X0Y29 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC L45 } [get_ports {qsfp3_rx_p[2]}] ;# MGTHRXP2_131 GTYE3_CHANNEL_X0Y30 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC L46 } [get_ports {qsfp3_rx_n[2]}] ;# MGTHRXN2_131 GTYE3_CHANNEL_X0Y30 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC L40 } [get_ports {qsfp3_tx_p[2]}] ;# MGTHTXP2_131 GTYE3_CHANNEL_X0Y30 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC L41 } [get_ports {qsfp3_tx_n[2]}] ;# MGTHTXN2_131 GTYE3_CHANNEL_X0Y30 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC K43 } [get_ports {qsfp3_rx_p[3]}] ;# MGTHRXP3_131 GTYE3_CHANNEL_X0Y31 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC K44 } [get_ports {qsfp3_rx_n[3]}] ;# MGTHRXN3_131 GTYE3_CHANNEL_X0Y31 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC J40 } [get_ports {qsfp3_tx_p[3]}] ;# MGTHTXP3_131 GTYE3_CHANNEL_X0Y31 / GTYE3_COMMON_X0Y7
+set_property -dict {LOC J41 } [get_ports {qsfp3_tx_n[3]}] ;# MGTHTXN3_131 GTYE3_CHANNEL_X0Y31 / GTYE3_COMMON_X0Y7
 set_property -dict {LOC R36 } [get_ports qsfp3_mgt_refclk_b0_p] ;# MGTREFCLK0P_131 from Si5338 B ch 0
 set_property -dict {LOC R37 } [get_ports qsfp3_mgt_refclk_b0_n] ;# MGTREFCLK0N_131 from Si5338 B ch 0
 #set_property -dict {LOC N36 } [get_ports qsfp3_mgt_refclk_b3_p] ;# MGTREFCLK1P_131 from Si5338 B ch 3
@@ -271,70 +271,70 @@ set_false_path -from [get_ports {qsfp3_i2c_scl qsfp3_i2c_sda}]
 set_input_delay 0 [get_ports {qsfp3_i2c_scl qsfp3_i2c_sda}]
 
 # PCIe Interface
-#set_property -dict {LOC AF2  } [get_ports {pcie_rx_p[0]}]  ;# MGTHRXP3_227 GTYE4_CHANNEL_X1Y35 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AF1  } [get_ports {pcie_rx_n[0]}]  ;# MGTHRXN3_227 GTYE4_CHANNEL_X1Y35 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AF7  } [get_ports {pcie_tx_p[0]}]  ;# MGTHTXP3_227 GTYE4_CHANNEL_X1Y35 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AF6  } [get_ports {pcie_tx_n[0]}]  ;# MGTHTXN3_227 GTYE4_CHANNEL_X1Y35 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AG4  } [get_ports {pcie_rx_p[1]}]  ;# MGTHRXP2_227 GTYE4_CHANNEL_X1Y34 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AG3  } [get_ports {pcie_rx_n[1]}]  ;# MGTHRXN2_227 GTYE4_CHANNEL_X1Y34 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AG9  } [get_ports {pcie_tx_p[1]}]  ;# MGTHTXP2_227 GTYE4_CHANNEL_X1Y34 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AG8  } [get_ports {pcie_tx_n[1]}]  ;# MGTHTXN2_227 GTYE4_CHANNEL_X1Y34 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AH2  } [get_ports {pcie_rx_p[2]}]  ;# MGTHRXP1_227 GTYE4_CHANNEL_X1Y33 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AH1  } [get_ports {pcie_rx_n[2]}]  ;# MGTHRXN1_227 GTYE4_CHANNEL_X1Y33 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AH7  } [get_ports {pcie_tx_p[2]}]  ;# MGTHTXP1_227 GTYE4_CHANNEL_X1Y33 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AH6  } [get_ports {pcie_tx_n[2]}]  ;# MGTHTXN1_227 GTYE4_CHANNEL_X1Y33 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AJ4  } [get_ports {pcie_rx_p[3]}]  ;# MGTHRXP0_227 GTYE4_CHANNEL_X1Y32 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AJ3  } [get_ports {pcie_rx_n[3]}]  ;# MGTHRXN0_227 GTYE4_CHANNEL_X1Y32 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AJ9  } [get_ports {pcie_tx_p[3]}]  ;# MGTHTXP0_227 GTYE4_CHANNEL_X1Y32 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AJ8  } [get_ports {pcie_tx_n[3]}]  ;# MGTHTXN0_227 GTYE4_CHANNEL_X1Y32 / GTYE4_COMMON_X1Y8
-#set_property -dict {LOC AK2  } [get_ports {pcie_rx_p[4]}]  ;# MGTHRXP3_226 GTYE4_CHANNEL_X1Y31 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AK1  } [get_ports {pcie_rx_n[4]}]  ;# MGTHRXN3_226 GTYE4_CHANNEL_X1Y31 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AK7  } [get_ports {pcie_tx_p[4]}]  ;# MGTHTXP3_226 GTYE4_CHANNEL_X1Y31 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AK6  } [get_ports {pcie_tx_n[4]}]  ;# MGTHTXN3_226 GTYE4_CHANNEL_X1Y31 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AL4  } [get_ports {pcie_rx_p[5]}]  ;# MGTHRXP2_226 GTYE4_CHANNEL_X1Y30 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AL3  } [get_ports {pcie_rx_n[5]}]  ;# MGTHRXN2_226 GTYE4_CHANNEL_X1Y30 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AL9  } [get_ports {pcie_tx_p[5]}]  ;# MGTHTXP2_226 GTYE4_CHANNEL_X1Y30 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AL8  } [get_ports {pcie_tx_n[5]}]  ;# MGTHTXN2_226 GTYE4_CHANNEL_X1Y30 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AM2  } [get_ports {pcie_rx_p[6]}]  ;# MGTHRXP1_226 GTYE4_CHANNEL_X1Y29 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AM1  } [get_ports {pcie_rx_n[6]}]  ;# MGTHRXN1_226 GTYE4_CHANNEL_X1Y29 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AM7  } [get_ports {pcie_tx_p[6]}]  ;# MGTHTXP1_226 GTYE4_CHANNEL_X1Y29 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AM6  } [get_ports {pcie_tx_n[6]}]  ;# MGTHTXN1_226 GTYE4_CHANNEL_X1Y29 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AN4  } [get_ports {pcie_rx_p[7]}]  ;# MGTHRXP0_226 GTYE4_CHANNEL_X1Y28 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AN3  } [get_ports {pcie_rx_n[7]}]  ;# MGTHRXN0_226 GTYE4_CHANNEL_X1Y28 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AN9  } [get_ports {pcie_tx_p[7]}]  ;# MGTHTXP0_226 GTYE4_CHANNEL_X1Y28 / GTYE4_COMMON_X1Y7
-#set_property -dict {LOC AN8  } [get_ports {pcie_tx_n[7]}]  ;# MGTHTXN0_226 GTYE4_CHANNEL_X1Y28 / GTYE4_COMMON_X1Y7
-set_property -dict {LOC AP2  } [get_ports {pcie_rx_p[0]}]  ;# MGTHRXP3_225 GTYE4_CHANNEL_X1Y27 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AP1  } [get_ports {pcie_rx_n[0]}]  ;# MGTHRXN3_225 GTYE4_CHANNEL_X1Y27 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AP7  } [get_ports {pcie_tx_p[0]}]  ;# MGTHTXP3_225 GTYE4_CHANNEL_X1Y27 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AP6  } [get_ports {pcie_tx_n[0]}]  ;# MGTHTXN3_225 GTYE4_CHANNEL_X1Y27 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AR4  } [get_ports {pcie_rx_p[1]}]  ;# MGTHRXP2_225 GTYE4_CHANNEL_X1Y26 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AR3  } [get_ports {pcie_rx_n[1]}]  ;# MGTHRXN2_225 GTYE4_CHANNEL_X1Y26 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AR9  } [get_ports {pcie_tx_p[1]}]  ;# MGTHTXP2_225 GTYE4_CHANNEL_X1Y26 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AR8  } [get_ports {pcie_tx_n[1]}]  ;# MGTHTXN2_225 GTYE4_CHANNEL_X1Y26 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AT2  } [get_ports {pcie_rx_p[2]}]  ;# MGTHRXP1_225 GTYE4_CHANNEL_X1Y25 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AT1  } [get_ports {pcie_rx_n[2]}]  ;# MGTHRXN1_225 GTYE4_CHANNEL_X1Y25 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AT7  } [get_ports {pcie_tx_p[2]}]  ;# MGTHTXP1_225 GTYE4_CHANNEL_X1Y25 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AT6  } [get_ports {pcie_tx_n[2]}]  ;# MGTHTXN1_225 GTYE4_CHANNEL_X1Y25 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AU4  } [get_ports {pcie_rx_p[3]}]  ;# MGTHRXP0_225 GTYE4_CHANNEL_X1Y24 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AU3  } [get_ports {pcie_rx_n[3]}]  ;# MGTHRXN0_225 GTYE4_CHANNEL_X1Y24 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AU9  } [get_ports {pcie_tx_p[3]}]  ;# MGTHTXP0_225 GTYE4_CHANNEL_X1Y24 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AU8  } [get_ports {pcie_tx_n[3]}]  ;# MGTHTXN0_225 GTYE4_CHANNEL_X1Y24 / GTYE4_COMMON_X1Y6
-set_property -dict {LOC AV2  } [get_ports {pcie_rx_p[4]}]  ;# MGTHRXP3_224 GTYE4_CHANNEL_X1Y23 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC AV1  } [get_ports {pcie_rx_n[4]}]  ;# MGTHRXN3_224 GTYE4_CHANNEL_X1Y23 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC AV7  } [get_ports {pcie_tx_p[4]}]  ;# MGTHTXP3_224 GTYE4_CHANNEL_X1Y23 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC AV6  } [get_ports {pcie_tx_n[4]}]  ;# MGTHTXN3_224 GTYE4_CHANNEL_X1Y23 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC AW4  } [get_ports {pcie_rx_p[5]}]  ;# MGTHRXP2_224 GTYE4_CHANNEL_X1Y22 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC AW3  } [get_ports {pcie_rx_n[5]}]  ;# MGTHRXN2_224 GTYE4_CHANNEL_X1Y22 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BB5  } [get_ports {pcie_tx_p[5]}]  ;# MGTHTXP2_224 GTYE4_CHANNEL_X1Y22 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BB4  } [get_ports {pcie_tx_n[5]}]  ;# MGTHTXN2_224 GTYE4_CHANNEL_X1Y22 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BA2  } [get_ports {pcie_rx_p[6]}]  ;# MGTHRXP1_224 GTYE4_CHANNEL_X1Y21 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BA1  } [get_ports {pcie_rx_n[6]}]  ;# MGTHRXN1_224 GTYE4_CHANNEL_X1Y21 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BD5  } [get_ports {pcie_tx_p[6]}]  ;# MGTHTXP1_224 GTYE4_CHANNEL_X1Y21 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BD4  } [get_ports {pcie_tx_n[6]}]  ;# MGTHTXN1_224 GTYE4_CHANNEL_X1Y21 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BC2  } [get_ports {pcie_rx_p[7]}]  ;# MGTHRXP0_224 GTYE4_CHANNEL_X1Y20 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BC1  } [get_ports {pcie_rx_n[7]}]  ;# MGTHRXN0_224 GTYE4_CHANNEL_X1Y20 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BF5  } [get_ports {pcie_tx_p[7]}]  ;# MGTHTXP0_224 GTYE4_CHANNEL_X1Y20 / GTYE4_COMMON_X1Y5
-set_property -dict {LOC BF4  } [get_ports {pcie_tx_n[7]}]  ;# MGTHTXN0_224 GTYE4_CHANNEL_X1Y20 / GTYE4_COMMON_X1Y5
+#set_property -dict {LOC AF2  } [get_ports {pcie_rx_p[0]}]  ;# MGTHRXP3_227 GTHE3_CHANNEL_X0Y15 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AF1  } [get_ports {pcie_rx_n[0]}]  ;# MGTHRXN3_227 GTHE3_CHANNEL_X0Y15 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AF7  } [get_ports {pcie_tx_p[0]}]  ;# MGTHTXP3_227 GTHE3_CHANNEL_X0Y15 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AF6  } [get_ports {pcie_tx_n[0]}]  ;# MGTHTXN3_227 GTHE3_CHANNEL_X0Y15 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AG4  } [get_ports {pcie_rx_p[1]}]  ;# MGTHRXP2_227 GTHE3_CHANNEL_X0Y14 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AG3  } [get_ports {pcie_rx_n[1]}]  ;# MGTHRXN2_227 GTHE3_CHANNEL_X0Y14 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AG9  } [get_ports {pcie_tx_p[1]}]  ;# MGTHTXP2_227 GTHE3_CHANNEL_X0Y14 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AG8  } [get_ports {pcie_tx_n[1]}]  ;# MGTHTXN2_227 GTHE3_CHANNEL_X0Y14 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AH2  } [get_ports {pcie_rx_p[2]}]  ;# MGTHRXP1_227 GTHE3_CHANNEL_X0Y13 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AH1  } [get_ports {pcie_rx_n[2]}]  ;# MGTHRXN1_227 GTHE3_CHANNEL_X0Y13 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AH7  } [get_ports {pcie_tx_p[2]}]  ;# MGTHTXP1_227 GTHE3_CHANNEL_X0Y13 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AH6  } [get_ports {pcie_tx_n[2]}]  ;# MGTHTXN1_227 GTHE3_CHANNEL_X0Y13 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AJ4  } [get_ports {pcie_rx_p[3]}]  ;# MGTHRXP0_227 GTHE3_CHANNEL_X0Y12 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AJ3  } [get_ports {pcie_rx_n[3]}]  ;# MGTHRXN0_227 GTHE3_CHANNEL_X0Y12 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AJ9  } [get_ports {pcie_tx_p[3]}]  ;# MGTHTXP0_227 GTHE3_CHANNEL_X0Y12 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AJ8  } [get_ports {pcie_tx_n[3]}]  ;# MGTHTXN0_227 GTHE3_CHANNEL_X0Y12 / GTHE3_COMMON_X0Y3
+#set_property -dict {LOC AK2  } [get_ports {pcie_rx_p[4]}]  ;# MGTHRXP3_226 GTHE3_CHANNEL_X0Y11 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AK1  } [get_ports {pcie_rx_n[4]}]  ;# MGTHRXN3_226 GTHE3_CHANNEL_X0Y11 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AK7  } [get_ports {pcie_tx_p[4]}]  ;# MGTHTXP3_226 GTHE3_CHANNEL_X0Y11 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AK6  } [get_ports {pcie_tx_n[4]}]  ;# MGTHTXN3_226 GTHE3_CHANNEL_X0Y11 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AL4  } [get_ports {pcie_rx_p[5]}]  ;# MGTHRXP2_226 GTHE3_CHANNEL_X0Y10 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AL3  } [get_ports {pcie_rx_n[5]}]  ;# MGTHRXN2_226 GTHE3_CHANNEL_X0Y10 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AL9  } [get_ports {pcie_tx_p[5]}]  ;# MGTHTXP2_226 GTHE3_CHANNEL_X0Y10 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AL8  } [get_ports {pcie_tx_n[5]}]  ;# MGTHTXN2_226 GTHE3_CHANNEL_X0Y10 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AM2  } [get_ports {pcie_rx_p[6]}]  ;# MGTHRXP1_226 GTHE3_CHANNEL_X0Y9 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AM1  } [get_ports {pcie_rx_n[6]}]  ;# MGTHRXN1_226 GTHE3_CHANNEL_X0Y9 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AM7  } [get_ports {pcie_tx_p[6]}]  ;# MGTHTXP1_226 GTHE3_CHANNEL_X0Y9 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AM6  } [get_ports {pcie_tx_n[6]}]  ;# MGTHTXN1_226 GTHE3_CHANNEL_X0Y9 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AN4  } [get_ports {pcie_rx_p[7]}]  ;# MGTHRXP0_226 GTHE3_CHANNEL_X0Y8 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AN3  } [get_ports {pcie_rx_n[7]}]  ;# MGTHRXN0_226 GTHE3_CHANNEL_X0Y8 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AN9  } [get_ports {pcie_tx_p[7]}]  ;# MGTHTXP0_226 GTHE3_CHANNEL_X0Y8 / GTHE3_COMMON_X0Y2
+#set_property -dict {LOC AN8  } [get_ports {pcie_tx_n[7]}]  ;# MGTHTXN0_226 GTHE3_CHANNEL_X0Y8 / GTHE3_COMMON_X0Y2
+set_property -dict {LOC AP2  } [get_ports {pcie_rx_p[0]}]  ;# MGTHRXP3_225 GTHE3_CHANNEL_X0Y7 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AP1  } [get_ports {pcie_rx_n[0]}]  ;# MGTHRXN3_225 GTHE3_CHANNEL_X0Y7 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AP7  } [get_ports {pcie_tx_p[0]}]  ;# MGTHTXP3_225 GTHE3_CHANNEL_X0Y7 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AP6  } [get_ports {pcie_tx_n[0]}]  ;# MGTHTXN3_225 GTHE3_CHANNEL_X0Y7 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AR4  } [get_ports {pcie_rx_p[1]}]  ;# MGTHRXP2_225 GTHE3_CHANNEL_X0Y6 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AR3  } [get_ports {pcie_rx_n[1]}]  ;# MGTHRXN2_225 GTHE3_CHANNEL_X0Y6 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AR9  } [get_ports {pcie_tx_p[1]}]  ;# MGTHTXP2_225 GTHE3_CHANNEL_X0Y6 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AR8  } [get_ports {pcie_tx_n[1]}]  ;# MGTHTXN2_225 GTHE3_CHANNEL_X0Y6 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AT2  } [get_ports {pcie_rx_p[2]}]  ;# MGTHRXP1_225 GTHE3_CHANNEL_X0Y5 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AT1  } [get_ports {pcie_rx_n[2]}]  ;# MGTHRXN1_225 GTHE3_CHANNEL_X0Y5 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AT7  } [get_ports {pcie_tx_p[2]}]  ;# MGTHTXP1_225 GTHE3_CHANNEL_X0Y5 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AT6  } [get_ports {pcie_tx_n[2]}]  ;# MGTHTXN1_225 GTHE3_CHANNEL_X0Y5 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AU4  } [get_ports {pcie_rx_p[3]}]  ;# MGTHRXP0_225 GTHE3_CHANNEL_X0Y4 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AU3  } [get_ports {pcie_rx_n[3]}]  ;# MGTHRXN0_225 GTHE3_CHANNEL_X0Y4 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AU9  } [get_ports {pcie_tx_p[3]}]  ;# MGTHTXP0_225 GTHE3_CHANNEL_X0Y4 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AU8  } [get_ports {pcie_tx_n[3]}]  ;# MGTHTXN0_225 GTHE3_CHANNEL_X0Y4 / GTHE3_COMMON_X0Y1
+set_property -dict {LOC AV2  } [get_ports {pcie_rx_p[4]}]  ;# MGTHRXP3_224 GTHE3_CHANNEL_X0Y3 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC AV1  } [get_ports {pcie_rx_n[4]}]  ;# MGTHRXN3_224 GTHE3_CHANNEL_X0Y3 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC AV7  } [get_ports {pcie_tx_p[4]}]  ;# MGTHTXP3_224 GTHE3_CHANNEL_X0Y3 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC AV6  } [get_ports {pcie_tx_n[4]}]  ;# MGTHTXN3_224 GTHE3_CHANNEL_X0Y3 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC AW4  } [get_ports {pcie_rx_p[5]}]  ;# MGTHRXP2_224 GTHE3_CHANNEL_X0Y2 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC AW3  } [get_ports {pcie_rx_n[5]}]  ;# MGTHRXN2_224 GTHE3_CHANNEL_X0Y2 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BB5  } [get_ports {pcie_tx_p[5]}]  ;# MGTHTXP2_224 GTHE3_CHANNEL_X0Y2 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BB4  } [get_ports {pcie_tx_n[5]}]  ;# MGTHTXN2_224 GTHE3_CHANNEL_X0Y2 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BA2  } [get_ports {pcie_rx_p[6]}]  ;# MGTHRXP1_224 GTHE3_CHANNEL_X0Y1 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BA1  } [get_ports {pcie_rx_n[6]}]  ;# MGTHRXN1_224 GTHE3_CHANNEL_X0Y1 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BD5  } [get_ports {pcie_tx_p[6]}]  ;# MGTHTXP1_224 GTHE3_CHANNEL_X0Y1 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BD4  } [get_ports {pcie_tx_n[6]}]  ;# MGTHTXN1_224 GTHE3_CHANNEL_X0Y1 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BC2  } [get_ports {pcie_rx_p[7]}]  ;# MGTHRXP0_224 GTHE3_CHANNEL_X0Y0 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BC1  } [get_ports {pcie_rx_n[7]}]  ;# MGTHRXN0_224 GTHE3_CHANNEL_X0Y0 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BF5  } [get_ports {pcie_tx_p[7]}]  ;# MGTHTXP0_224 GTHE3_CHANNEL_X0Y0 / GTHE3_COMMON_X0Y0
+set_property -dict {LOC BF4  } [get_ports {pcie_tx_n[7]}]  ;# MGTHTXN0_224 GTHE3_CHANNEL_X0Y0 / GTHE3_COMMON_X0Y0
 set_property -dict {LOC AT11 } [get_ports pcie_refclk_0_p] ;# MGTREFCLK0P_225
 set_property -dict {LOC AT10 } [get_ports pcie_refclk_0_n] ;# MGTREFCLK0N_225
 #set_property -dict {LOC AM11 } [get_ports pcie_refclk_b1_p] ;# MGTREFCLK0P_226 from Si5338 B ch 1

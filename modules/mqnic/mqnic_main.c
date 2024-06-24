@@ -7,6 +7,7 @@
 #include <linux/module.h>
 #include <linux/version.h>
 #include <linux/delay.h>
+#include <linux/idr.h>
 #include <linux/reset.h>
 #include <linux/rtc.h>
 
@@ -55,44 +56,23 @@ static struct of_device_id mqnic_of_id_table[] = {
 MODULE_DEVICE_TABLE(of, mqnic_of_id_table);
 #endif
 
-static LIST_HEAD(mqnic_devices);
-static DEFINE_SPINLOCK(mqnic_devices_lock);
+static DEFINE_IDA(mqnic_instance_ida);
 
-static unsigned int mqnic_get_free_id(void)
+static int mqnic_assign_id(struct mqnic_dev *mqnic)
 {
-	struct mqnic_dev *mqnic;
-	unsigned int id = 0;
-	bool available = false;
+	int ret = ida_alloc(&mqnic_instance_ida, GFP_KERNEL);
+	if (ret < 0)
+		return ret;
 
-	while (!available) {
-		available = true;
-		list_for_each_entry(mqnic, &mqnic_devices, dev_list_node) {
-			if (mqnic->id == id) {
-				available = false;
-				id++;
-				break;
-			}
-		}
-	}
-
-	return id;
-}
-
-static void mqnic_assign_id(struct mqnic_dev *mqnic)
-{
-	spin_lock(&mqnic_devices_lock);
-	mqnic->id = mqnic_get_free_id();
-	list_add_tail(&mqnic->dev_list_node, &mqnic_devices);
-	spin_unlock(&mqnic_devices_lock);
-
+	mqnic->id = ret;
 	snprintf(mqnic->name, sizeof(mqnic->name), DRIVER_NAME "%d", mqnic->id);
+
+	return 0;
 }
 
 static void mqnic_free_id(struct mqnic_dev *mqnic)
 {
-	spin_lock(&mqnic_devices_lock);
-	list_del(&mqnic->dev_list_node);
-	spin_unlock(&mqnic_devices_lock);
+	ida_free(&mqnic_instance_ida, mqnic->id);
 }
 
 static int mqnic_common_setdma(struct mqnic_dev *mqnic)
@@ -584,8 +564,10 @@ static int mqnic_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent
 	mqnic->pdev = pdev;
 	pci_set_drvdata(pdev, mqnic);
 
-	// assign ID and add to list
-	mqnic_assign_id(mqnic);
+	// assign ID
+	ret = mqnic_assign_id(mqnic);
+	if (ret)
+		goto fail_assign_id;
 
 	// Disable ASPM
 	pci_disable_link_state(pdev, PCIE_LINK_STATE_L0S |
@@ -689,6 +671,7 @@ fail_regions:
 	pci_disable_device(pdev);
 fail_enable_device:
 	mqnic_free_id(mqnic);
+fail_assign_id:
 	mqnic_devlink_free(devlink);
 	return ret;
 }
@@ -756,8 +739,10 @@ static int mqnic_platform_probe(struct platform_device *pdev)
 	mqnic->pfdev = pdev;
 	platform_set_drvdata(pdev, mqnic);
 
-	// assign ID and add to list
-	mqnic_assign_id(mqnic);
+	// assign ID
+	ret = mqnic_assign_id(mqnic);
+	if (ret)
+		goto fail_assign_id;
 
 	// Set DMA properties
 	ret = mqnic_common_setdma(mqnic);
@@ -840,6 +825,7 @@ static int mqnic_platform_probe(struct platform_device *pdev)
 	// error handling
 fail:
 	mqnic_free_id(mqnic);
+fail_assign_id:
 	mqnic_devlink_free(devlink);
 	return ret;
 }
@@ -897,6 +883,8 @@ static void __exit mqnic_exit(void)
 #ifdef CONFIG_PCI
 	pci_unregister_driver(&mqnic_pci_driver);
 #endif
+
+	ida_destroy(&mqnic_instance_ida);
 }
 
 module_init(mqnic_init);

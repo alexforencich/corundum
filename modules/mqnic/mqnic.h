@@ -138,7 +138,6 @@ struct mqnic_dev {
 	struct mqnic_irq *irq[MQNIC_MAX_IRQ];
 
 	unsigned int id;
-	struct list_head dev_list_node;
 
 	struct miscdevice misc_dev;
 

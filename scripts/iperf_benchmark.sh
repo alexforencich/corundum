@@ -101,7 +101,10 @@ if [ ! -z "$netdev" ]; then
         fi
     fi
 
-    if [ ! -x "$(command -v numactl)" ] ; then
+    if [ "$(cat /sys/devices/system/node/online)" = "0" ] ; then
+        # only one NUMA node
+        :
+    elif [ ! -x "$(command -v numactl)" ] ; then
         echo "numactl not found; cannot bind iperf to netdev NUMA node" >&2
     else
         numa_cmd="numactl -l -N netdev:$netdev"

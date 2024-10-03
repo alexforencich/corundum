@@ -1474,6 +1474,8 @@ core_inst (
     .qsfp_led_act(qsfp_led_act),
     //.qsfp_led_stat_g(qsfp_led_stat_g),
     .qsfp_led_stat_y(qsfp_led_stat_y),
+    .pps_in(),
+    .pps_out(),
 
     /*
      * I2C

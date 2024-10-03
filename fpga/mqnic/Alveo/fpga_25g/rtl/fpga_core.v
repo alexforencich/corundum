@@ -205,6 +205,8 @@ module fpga_core #
     output wire [QSFP_CNT-1:0]                qsfp_led_act,
     output wire [QSFP_CNT-1:0]                qsfp_led_stat_g,
     output wire [QSFP_CNT-1:0]                qsfp_led_stat_y,
+    input wire                                pps_in,
+    output wire                               pps_out,
 
     /*
      * I2C
@@ -885,6 +887,8 @@ assign led[2:1] = 0;
 assign qsfp_led_act = ptp_pps_str;
 assign qsfp_led_stat_g = 0;
 assign qsfp_led_stat_y = 0;
+
+assign pps_out = ptp_perout_pulse[0];
 
 wire [PORT_COUNT-1:0]                         eth_tx_clk;
 wire [PORT_COUNT-1:0]                         eth_tx_rst;

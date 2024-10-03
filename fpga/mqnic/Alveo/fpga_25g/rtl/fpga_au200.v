@@ -166,6 +166,7 @@ module fpga #
     input  wire [3:0]   msp_gpio,
     output wire         msp_uart_txd,
     input  wire         msp_uart_rxd,
+    output wire         pps_out,
 
     /*
      * I2C for board management
@@ -2289,7 +2290,7 @@ core_inst (
     .qsfp_led_stat_g(),
     .qsfp_led_stat_y(),
     .pps_in(),
-    .pps_out(),
+    .pps_out(pps_out),
 
     /*
      * I2C

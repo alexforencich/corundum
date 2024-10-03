@@ -75,6 +75,12 @@ set_property -dict {LOC AP20 IOSTANDARD LVCMOS12} [get_ports {sw[3]}]
 set_false_path -from [get_ports {sw[*]}]
 set_input_delay 0 [get_ports {sw[*]}]
 
+# PPS in/out
+set_property -dict {LOC AN19 IOSTANDARD LVCMOS12 SLEW FAST DRIVE 8} [get_ports {pps_out}]
+
+set_false_path -to [get_ports {pps_out}]
+set_output_delay 0 [get_ports {pps_out}]
+
 # UART
 #set_property -dict {LOC BF18 IOSTANDARD LVCMOS12 SLEW SLOW DRIVE 8} [get_ports uart_txd]
 #set_property -dict {LOC BB20 IOSTANDARD LVCMOS12} [get_ports uart_rxd]

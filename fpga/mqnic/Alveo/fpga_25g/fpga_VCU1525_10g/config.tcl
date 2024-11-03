@@ -61,7 +61,7 @@ dict set params TDMA_BER_ENABLE "0"
 # Transceiver configuration
 set eth_xcvr_freerun_freq {125}
 set eth_xcvr_line_rate {10.3125}
-set eth_xcvr_refclk_freq {161.1328125}
+set eth_xcvr_refclk_freq {156.25}
 set eth_xcvr_sec_line_rate {0}
 set eth_xcvr_sec_refclk_freq $eth_xcvr_refclk_freq
 set eth_xcvr_qpll_fracn [expr {int(fmod($eth_xcvr_line_rate*1000/2 / $eth_xcvr_refclk_freq, 1)*pow(2, 24))}]

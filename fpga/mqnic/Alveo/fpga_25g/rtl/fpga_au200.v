@@ -192,17 +192,17 @@ module fpga #
     output wire [3:0]   qsfp0_tx_n,
     input  wire [3:0]   qsfp0_rx_p,
     input  wire [3:0]   qsfp0_rx_n,
-    // input  wire         qsfp0_mgt_refclk_0_p,
-    // input  wire         qsfp0_mgt_refclk_0_n,
-    input  wire         qsfp0_mgt_refclk_1_p,
-    input  wire         qsfp0_mgt_refclk_1_n,
+    input  wire         qsfp0_mgt_refclk_0_p,
+    input  wire         qsfp0_mgt_refclk_0_n,
+    // input  wire         qsfp0_mgt_refclk_1_p,
+    // input  wire         qsfp0_mgt_refclk_1_n,
     output wire         qsfp0_modsell,
     output wire         qsfp0_resetl,
     input  wire         qsfp0_modprsl,
     input  wire         qsfp0_intl,
     output wire         qsfp0_lpmode,
-    output wire         qsfp0_refclk_reset,
-    output wire [1:0]   qsfp0_fs,
+    // output wire         qsfp0_refclk_reset,
+    // output wire [1:0]   qsfp0_fs,
 
     output wire [3:0]   qsfp1_tx_p,
     output wire [3:0]   qsfp1_tx_n,
@@ -210,15 +210,15 @@ module fpga #
     input  wire [3:0]   qsfp1_rx_n,
     // input  wire         qsfp1_mgt_refclk_0_p,
     // input  wire         qsfp1_mgt_refclk_0_n,
-    input  wire         qsfp1_mgt_refclk_1_p,
-    input  wire         qsfp1_mgt_refclk_1_n,
+    // input  wire         qsfp1_mgt_refclk_1_p,
+    // input  wire         qsfp1_mgt_refclk_1_n,
     output wire         qsfp1_modsell,
     output wire         qsfp1_resetl,
     input  wire         qsfp1_modprsl,
     input  wire         qsfp1_intl,
     output wire         qsfp1_lpmode,
-    output wire         qsfp1_refclk_reset,
-    output wire [1:0]   qsfp1_fs,
+    // output wire         qsfp1_refclk_reset,
+    // output wire [1:0]   qsfp1_fs,
 
     /*
      * DDR4
@@ -285,8 +285,8 @@ module fpga #
 );
 
 // PTP configuration
-parameter PTP_CLK_PERIOD_NS_NUM = 1024;
-parameter PTP_CLK_PERIOD_NS_DENOM = 165;
+parameter PTP_CLK_PERIOD_NS_NUM = 32;
+parameter PTP_CLK_PERIOD_NS_DENOM = 5;
 
 // Interface configuration
 parameter PTP_TS_FMT_TOD = 0;
@@ -338,7 +338,7 @@ wire rst_50mhz_int;
 wire clk_125mhz_int;
 wire rst_125mhz_int;
 
-wire mmcm_rst;
+wire mmcm_rst = pcie_user_reset;
 wire mmcm_locked;
 wire mmcm_clkfb;
 
@@ -538,7 +538,7 @@ wire cfgmclk;
 STARTUPE3
 startupe3_inst (
     .CFGCLK(),
-    .CFGMCLK(cfgmclk),
+    .CFGMCLK(),
     .DI(qspi_dq_int),
     .DO(qspi_dq_o_reg),
     .DTS(~qspi_dq_oe_reg),
@@ -554,12 +554,6 @@ startupe3_inst (
     .USRCCLKTS(1'b0),
     .USRDONEO(1'b0),
     .USRDONETS(1'b1)
-);
-
-BUFG
-cfgmclk_bufg_inst (
-    .I(cfgmclk),
-    .O(cfgmclk_int)
 );
 
 // FPGA boot
@@ -830,28 +824,6 @@ end else begin
 end
 
 endgenerate
-
-// configure SI5335 clock generators
-reg qsfp_refclk_reset_reg = 1'b1;
-reg sys_reset_reg = 1'b1;
-
-reg [9:0] reset_timer_reg = 0;
-
-assign mmcm_rst = sys_reset_reg | pcie_user_reset;
-
-always @(posedge cfgmclk_int) begin
-    if (&reset_timer_reg) begin
-        if (qsfp_refclk_reset_reg) begin
-            qsfp_refclk_reset_reg <= 1'b0;
-            reset_timer_reg <= 0;
-        end else begin
-            qsfp_refclk_reset_reg <= 1'b0;
-            sys_reset_reg <= 1'b0;
-        end
-    end else begin
-        reset_timer_reg <= reset_timer_reg + 1;
-    end
-end
 
 // PCIe
 wire pcie_sys_clk;
@@ -1161,26 +1133,26 @@ assign qsfp0_lpmode = qsfp_lpmode[0 +: 1];
 
 wire qsfp0_gtpowergood;
 
-wire qsfp0_mgt_refclk_1;
-wire qsfp0_mgt_refclk_1_int;
-wire qsfp0_mgt_refclk_1_bufg;
+wire qsfp0_mgt_refclk_0;
+wire qsfp0_mgt_refclk_0_int;
+wire qsfp0_mgt_refclk_0_bufg;
 
-IBUFDS_GTE4 ibufds_gte4_qsfp0_mgt_refclk_1_inst (
-    .I     (qsfp0_mgt_refclk_1_p),
-    .IB    (qsfp0_mgt_refclk_1_n),
+IBUFDS_GTE4 ibufds_gte4_qsfp0_mgt_refclk_0_inst (
+    .I     (qsfp0_mgt_refclk_0_p),
+    .IB    (qsfp0_mgt_refclk_0_n),
     .CEB   (1'b0),
-    .O     (qsfp0_mgt_refclk_1),
-    .ODIV2 (qsfp0_mgt_refclk_1_int)
+    .O     (qsfp0_mgt_refclk_0),
+    .ODIV2 (qsfp0_mgt_refclk_0_int)
 );
 
-BUFG_GT bufg_gt_qsfp0_mgt_refclk_1_inst (
+BUFG_GT bufg_gt_qsfp0_mgt_refclk_0_inst (
     .CE      (qsfp0_gtpowergood),
     .CEMASK  (1'b1),
     .CLR     (1'b0),
     .CLRMASK (1'b1),
     .DIV     (3'd0),
-    .I       (qsfp0_mgt_refclk_1_int),
-    .O       (qsfp0_mgt_refclk_1_bufg)
+    .I       (qsfp0_mgt_refclk_0_int),
+    .O       (qsfp0_mgt_refclk_0_bufg)
 );
 
 wire qsfp0_rst;
@@ -1189,7 +1161,7 @@ sync_reset #(
     .N(4)
 )
 qsfp0_sync_reset_inst (
-    .clk(qsfp0_mgt_refclk_1_bufg),
+    .clk(qsfp0_mgt_refclk_0_bufg),
     .rst(rst_125mhz_int),
     .out(qsfp0_rst)
 );
@@ -1208,14 +1180,14 @@ qsfp0_phy_quad_inst (
      * Common
      */
     .xcvr_gtpowergood_out(qsfp0_gtpowergood),
-    .xcvr_gtrefclk00_in(qsfp0_mgt_refclk_1),
+    .xcvr_gtrefclk00_in(qsfp0_mgt_refclk_0),
     .xcvr_qpll0pd_in(1'b0),
     .xcvr_qpll0reset_in(1'b0),
     .xcvr_qpll0pcierate_in(3'd0),
     .xcvr_qpll0lock_out(),
     .xcvr_qpll0clk_out(),
     .xcvr_qpll0refclk_out(),
-    .xcvr_gtrefclk01_in(qsfp0_mgt_refclk_1),
+    .xcvr_gtrefclk01_in(qsfp0_mgt_refclk_0),
     .xcvr_qpll1pd_in(1'b0),
     .xcvr_qpll1reset_in(1'b0),
     .xcvr_qpll1pcierate_in(3'd0),
@@ -1332,39 +1304,6 @@ assign qsfp1_lpmode = qsfp_lpmode[1 +: 1];
 
 wire qsfp1_gtpowergood;
 
-wire qsfp1_mgt_refclk_1;
-wire qsfp1_mgt_refclk_1_int;
-wire qsfp1_mgt_refclk_1_bufg;
-
-IBUFDS_GTE4 ibufds_gte4_qsfp1_mgt_refclk_1_inst (
-    .I     (qsfp1_mgt_refclk_1_p),
-    .IB    (qsfp1_mgt_refclk_1_n),
-    .CEB   (1'b0),
-    .O     (qsfp1_mgt_refclk_1),
-    .ODIV2 (qsfp1_mgt_refclk_1_int)
-);
-
-BUFG_GT bufg_gt_qsfp1_mgt_refclk_1_inst (
-    .CE      (qsfp1_gtpowergood),
-    .CEMASK  (1'b1),
-    .CLR     (1'b0),
-    .CLRMASK (1'b1),
-    .DIV     (3'd0),
-    .I       (qsfp1_mgt_refclk_1_int),
-    .O       (qsfp1_mgt_refclk_1_bufg)
-);
-
-wire qsfp1_rst;
-
-sync_reset #(
-    .N(4)
-)
-qsfp1_sync_reset_inst (
-    .clk(qsfp1_mgt_refclk_1_bufg),
-    .rst(rst_125mhz_int),
-    .out(qsfp1_rst)
-);
-
 eth_xcvr_phy_10g_gty_quad_wrapper #(
     .PRBS31_ENABLE(1),
     .TX_SERDES_PIPELINE(1),
@@ -1373,20 +1312,20 @@ eth_xcvr_phy_10g_gty_quad_wrapper #(
 )
 qsfp1_phy_quad_inst (
     .xcvr_ctrl_clk(clk_125mhz_int),
-    .xcvr_ctrl_rst(qsfp1_rst),
+    .xcvr_ctrl_rst(qsfp0_rst),
 
     /*
      * Common
      */
     .xcvr_gtpowergood_out(qsfp1_gtpowergood),
-    .xcvr_gtrefclk00_in(qsfp1_mgt_refclk_1),
+    .xcvr_gtrefclk00_in(qsfp0_mgt_refclk_0),
     .xcvr_qpll0pd_in(1'b0),
     .xcvr_qpll0reset_in(1'b0),
     .xcvr_qpll0pcierate_in(3'd0),
     .xcvr_qpll0lock_out(),
     .xcvr_qpll0clk_out(),
     .xcvr_qpll0refclk_out(),
-    .xcvr_gtrefclk01_in(qsfp1_mgt_refclk_1),
+    .xcvr_gtrefclk01_in(qsfp0_mgt_refclk_0),
     .xcvr_qpll1pd_in(1'b0),
     .xcvr_qpll1reset_in(1'b0),
     .xcvr_qpll1pcierate_in(3'd0),
@@ -1494,7 +1433,7 @@ wire ptp_clk;
 wire ptp_rst;
 wire ptp_sample_clk;
 
-assign ptp_clk = qsfp0_mgt_refclk_1_bufg;
+assign ptp_clk = qsfp0_mgt_refclk_0_bufg;
 assign ptp_rst = qsfp0_rst;
 assign ptp_sample_clk = clk_125mhz_int;
 

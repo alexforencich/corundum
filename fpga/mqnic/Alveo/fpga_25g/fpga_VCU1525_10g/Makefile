@@ -134,7 +134,6 @@ SYN_FILES += lib/pcie/rtl/pulse_merge.v
 # XDC files
 XDC_FILES = fpga_au200.xdc
 XDC_FILES += placement_vcu1525.xdc
-XDC_FILES += cfgmclk.xdc
 XDC_FILES += boot.xdc
 XDC_FILES += lib/axis/syn/vivado/axis_async_fifo.tcl
 XDC_FILES += lib/axis/syn/vivado/sync_reset.tcl

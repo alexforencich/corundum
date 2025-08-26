@@ -13,7 +13,7 @@ The SPI flash register block has a header with type 0x0000C120, version 0x000002
     ========  =============  ======  ======  ======  ======  =============
     RBB+0x00  Type           Vendor ID       Type            RO 0x0000C120
     --------  -------------  --------------  --------------  -------------
-    RBB+0x04  Version        Major   Minor   Patch   Meta    RO 0x00000100
+    RBB+0x04  Version        Major   Minor   Patch   Meta    RO 0x00000200
     --------  -------------  ------  ------  ------  ------  -------------
     RBB+0x08  Next pointer   Pointer to next register block  RO -
     --------  -------------  ------------------------------  -------------

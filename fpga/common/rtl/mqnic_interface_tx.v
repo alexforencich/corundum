@@ -53,6 +53,7 @@ module mqnic_interface_tx #
     parameter DMA_ADDR_WIDTH = 64,
     parameter DMA_LEN_WIDTH = 16,
     parameter DMA_TAG_WIDTH = 16,
+    parameter DMA_CLIENT_LEN_WIDTH = DMA_LEN_WIDTH,
     parameter RAM_ADDR_WIDTH = $clog2(TX_RAM_SIZE),
     parameter RAM_SEG_COUNT = 2,
     parameter RAM_SEG_DATA_WIDTH = 256*2/RAM_SEG_COUNT,
@@ -208,7 +209,6 @@ module mqnic_interface_tx #
 );
 
 parameter DMA_CLIENT_TAG_WIDTH = $clog2(TX_DESC_TABLE_SIZE);
-parameter DMA_CLIENT_LEN_WIDTH = DMA_LEN_WIDTH;
 
 wire [AXIS_DESC_DATA_WIDTH-1:0]  tx_fifo_desc_tdata;
 wire [AXIS_DESC_KEEP_WIDTH-1:0]  tx_fifo_desc_tkeep;

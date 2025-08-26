@@ -425,6 +425,9 @@ wire sfp_i2c_select_scl_o;
 wire sfp_i2c_select_sda_o;
 wire [7:0] sfp_i2c_select;
 
+reg sfp_i2c_scl_o_reg = 1'b1;
+reg sfp_i2c_sda_o_reg = 1'b1;
+
 wire sfp_i2c_scl_i_int = sfp_i2c_scl_i & sfp_i2c_scl_o;
 wire sfp_i2c_sda_i_int = (sfp_1_i2c_sda_i || !sfp_i2c_select[0]) && (sfp_2_i2c_sda_i || !sfp_i2c_select[1]) & sfp_i2c_sda_o_reg & sfp_i2c_select_sda_o;
 
@@ -432,9 +435,6 @@ reg sfp_1_tx_disable_reg = 1'b0;
 reg sfp_1_rs_reg = 1'b0;
 reg sfp_2_tx_disable_reg = 1'b0;
 reg sfp_2_rs_reg = 1'b0;
-
-reg sfp_i2c_scl_o_reg = 1'b1;
-reg sfp_i2c_sda_o_reg = 1'b1;
 
 reg eeprom_i2c_scl_o_reg = 1'b1;
 reg eeprom_i2c_sda_o_reg = 1'b1;

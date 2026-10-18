@@ -159,7 +159,8 @@ dict set params AXIS_ETH_TX_TS_PIPELINE "4"
 dict set params AXIS_ETH_RX_PIPELINE "4"
 dict set params AXIS_ETH_RX_FIFO_PIPELINE "4"
 dict set params ETH_RX_CLK_FROM_TX "0"
-dict set params ETH_RS_FEC_ENABLE "1"
+# RS-FEC enable per Ethernet interface (bitmask, bit N = interface N)
+dict set params ETH_RS_FEC_ENABLE "3"
 
 # Statistics counter subsystem
 dict set params STAT_ENABLE "1"

@@ -110,6 +110,35 @@
 #define MQNIC_RB_GECKO_BMC_REG_DATA    0x10
 #define MQNIC_RB_GECKO_BMC_REG_CMD     0x14
 
+#define MQNIC_RB_DRP_TYPE      0x0000C150
+#define MQNIC_RB_DRP_VER       0x00000100
+#define MQNIC_RB_DRP_REG_INFO  0x0C
+#define MQNIC_RB_DRP_REG_CTRL  0x10
+#define MQNIC_RB_DRP_REG_ADDR  0x14
+#define MQNIC_RB_DRP_REG_DI    0x18
+#define MQNIC_RB_DRP_REG_DO    0x1C
+
+#define MQNIC_RB_DRP_CTRL_EN    (1 << 0)
+#define MQNIC_RB_DRP_CTRL_WE    (1 << 1)
+#define MQNIC_RB_DRP_CTRL_BUSY  (1 << 8)
+
+// DRP_INFO value for CMAC (cmac_gty_wrapper) register maps
+#define MQNIC_RB_DRP_INFO_CMAC 0x09030304
+
+// CMAC register map (accessed via DRP; cmac_gty_wrapper ctrl space at DRP 0xB0000)
+#define MQNIC_RB_DRP_CMAC_REG_TX_CTRL   0xB0000
+#define MQNIC_RB_DRP_CMAC_REG_RX_CTRL   0xB0100
+#define MQNIC_RB_DRP_CMAC_REG_FEC_CTRL  0xB0200
+
+#define MQNIC_RB_DRP_CMAC_TX_CTRL_TX_ENABLE  (1 << 0)
+#define MQNIC_RB_DRP_CMAC_TX_CTRL_TX_RESET   (1 << 8)
+#define MQNIC_RB_DRP_CMAC_TX_CTRL_GT_TX_RESET (1 << 9)
+#define MQNIC_RB_DRP_CMAC_RX_CTRL_RX_ENABLE  (1 << 0)
+#define MQNIC_RB_DRP_CMAC_RX_CTRL_RX_RESET   (1 << 8)
+#define MQNIC_RB_DRP_CMAC_RX_CTRL_GT_RX_RESET (1 << 9)
+#define MQNIC_RB_DRP_CMAC_FEC_CTRL_TX_RS_FEC_ENABLE  (1 << 0)
+#define MQNIC_RB_DRP_CMAC_FEC_CTRL_RX_RS_FEC_ENABLE  (1 << 1)
+
 #define MQNIC_RB_STATS_TYPE        0x0000C006
 #define MQNIC_RB_STATS_VER         0x00000100
 #define MQNIC_RB_STATS_REG_OFFSET  0x0C

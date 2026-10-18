@@ -130,7 +130,7 @@ module fpga #
     parameter AXIS_ETH_RX_PIPELINE = 4,
     parameter AXIS_ETH_RX_FIFO_PIPELINE = 4,
     parameter ETH_RX_CLK_FROM_TX = 0,
-    parameter ETH_RS_FEC_ENABLE = 1,
+    parameter ETH_RS_FEC_ENABLE = 3,
 
     // Statistics counter subsystem
     parameter STAT_ENABLE = 1,
@@ -780,7 +780,7 @@ cmac_gty_wrapper #(
     .TX_SERDES_PIPELINE(0),
     .RX_SERDES_PIPELINE(0),
     .RX_CLK_FROM_TX(ETH_RX_CLK_FROM_TX),
-    .RS_FEC_ENABLE(ETH_RS_FEC_ENABLE)
+    .RS_FEC_ENABLE(ETH_RS_FEC_ENABLE[0])
 )
 qsfp0_cmac_inst (
     .xcvr_ctrl_clk(clk_125mhz_int),
@@ -954,7 +954,7 @@ cmac_gty_wrapper #(
     .TX_SERDES_PIPELINE(0),
     .RX_SERDES_PIPELINE(0),
     .RX_CLK_FROM_TX(ETH_RX_CLK_FROM_TX),
-    .RS_FEC_ENABLE(ETH_RS_FEC_ENABLE)
+    .RS_FEC_ENABLE(ETH_RS_FEC_ENABLE[1])
 )
 qsfp1_cmac_inst (
     .xcvr_ctrl_clk(clk_125mhz_int),

@@ -6,6 +6,7 @@
 #include "mqnic.h"
 
 #include <linux/ethtool.h>
+#include <linux/delay.h>
 #include <linux/version.h>
 
 #define SFF_MODULE_ID_SFP        0x03
@@ -649,6 +650,146 @@ static int mqnic_get_module_eeprom_by_page(struct net_device *ndev,
 }
 #endif
 
+static struct mqnic_reg_block *mqnic_get_cmac_drp_rb(struct mqnic_priv *priv)
+{
+	struct mqnic_reg_block *rb;
+
+	rb = mqnic_find_reg_block(priv->mdev->rb_list, MQNIC_RB_DRP_TYPE, MQNIC_RB_DRP_VER,
+			priv->port->phys_index);
+
+	if (!rb)
+		return NULL;
+
+	// only CMAC (cmac_gty_wrapper) register maps carry FEC registers
+	if (ioread32(rb->regs + MQNIC_RB_DRP_REG_INFO) != MQNIC_RB_DRP_INFO_CMAC)
+		return NULL;
+
+	return rb;
+}
+
+static int mqnic_drp_xfer(struct mqnic_reg_block *rb, u32 addr, u16 di, bool we, u16 *dout)
+{
+	int k;
+	u32 ctrl;
+
+	iowrite32(addr, rb->regs + MQNIC_RB_DRP_REG_ADDR);
+	iowrite32(di, rb->regs + MQNIC_RB_DRP_REG_DI);
+	iowrite32(MQNIC_RB_DRP_CTRL_EN | (we ? MQNIC_RB_DRP_CTRL_WE : 0),
+			rb->regs + MQNIC_RB_DRP_REG_CTRL);
+
+	for (k = 0; k < 1000; k++) {
+		ctrl = ioread32(rb->regs + MQNIC_RB_DRP_REG_CTRL);
+
+		if (!(ctrl & (MQNIC_RB_DRP_CTRL_EN | MQNIC_RB_DRP_CTRL_BUSY)))
+			break;
+
+		usleep_range(100, 200);
+	}
+
+	if (ctrl & (MQNIC_RB_DRP_CTRL_EN | MQNIC_RB_DRP_CTRL_BUSY))
+		return -ETIMEDOUT;
+
+	if (dout)
+		*dout = ioread32(rb->regs + MQNIC_RB_DRP_REG_DO);
+
+	return 0;
+}
+
+static int mqnic_drp_read(struct mqnic_reg_block *rb, u32 addr, u16 *val)
+{
+	return mqnic_drp_xfer(rb, addr, 0, false, val);
+}
+
+static int mqnic_drp_write(struct mqnic_reg_block *rb, u32 addr, u16 val)
+{
+	return mqnic_drp_xfer(rb, addr, val, true, NULL);
+}
+
+static int mqnic_get_fecparam(struct net_device *ndev,
+		struct ethtool_fecparam *fecparam)
+{
+	struct mqnic_priv *priv = netdev_priv(ndev);
+	struct mqnic_reg_block *rb;
+	u16 val = 0;
+	int ret;
+
+	rb = mqnic_get_cmac_drp_rb(priv);
+
+	if (!rb)
+		return -EOPNOTSUPP;
+
+	ret = mqnic_drp_read(rb, MQNIC_RB_DRP_CMAC_REG_FEC_CTRL, &val);
+
+	if (ret)
+		return ret;
+
+	// tx and rx RS-FEC enables are configured together
+	fecparam->active_fec = val == (MQNIC_RB_DRP_CMAC_FEC_CTRL_TX_RS_FEC_ENABLE |
+			MQNIC_RB_DRP_CMAC_FEC_CTRL_RX_RS_FEC_ENABLE) ? ETHTOOL_FEC_RS : ETHTOOL_FEC_OFF;
+	fecparam->fec = fecparam->active_fec;
+
+	return 0;
+}
+
+static int mqnic_set_fecparam(struct net_device *ndev,
+		struct ethtool_fecparam *fecparam)
+{
+	struct mqnic_priv *priv = netdev_priv(ndev);
+	struct mqnic_reg_block *rb;
+	u16 fec;
+	int ret;
+
+	rb = mqnic_get_cmac_drp_rb(priv);
+
+	if (!rb)
+		return -EOPNOTSUPP;
+
+	switch (fecparam->fec) {
+	case ETHTOOL_FEC_OFF:
+		fec = 0;
+		break;
+	case ETHTOOL_FEC_RS:
+		fec = MQNIC_RB_DRP_CMAC_FEC_CTRL_TX_RS_FEC_ENABLE |
+				MQNIC_RB_DRP_CMAC_FEC_CTRL_RX_RS_FEC_ENABLE;
+		break;
+	default:
+		// FEC autonegotiation is not available on 100GBASE-R links
+		return -EOPNOTSUPP;
+	}
+
+	// hold TX and RX (including GT) in reset while the FEC enables are changed
+	ret = mqnic_drp_write(rb, MQNIC_RB_DRP_CMAC_REG_TX_CTRL,
+			MQNIC_RB_DRP_CMAC_TX_CTRL_TX_ENABLE | MQNIC_RB_DRP_CMAC_TX_CTRL_TX_RESET |
+			MQNIC_RB_DRP_CMAC_TX_CTRL_GT_TX_RESET);
+
+	if (ret)
+		return ret;
+
+	ret = mqnic_drp_write(rb, MQNIC_RB_DRP_CMAC_REG_RX_CTRL,
+			MQNIC_RB_DRP_CMAC_RX_CTRL_RX_ENABLE | MQNIC_RB_DRP_CMAC_RX_CTRL_RX_RESET |
+			MQNIC_RB_DRP_CMAC_RX_CTRL_GT_RX_RESET);
+
+	if (ret)
+		return ret;
+
+	ret = mqnic_drp_write(rb, MQNIC_RB_DRP_CMAC_REG_FEC_CTRL, fec);
+
+	if (ret)
+		return ret;
+
+	// give the GTs time in reset so the PCS re-locks after the encoding change
+	usleep_range(10000, 20000);
+
+	ret = mqnic_drp_write(rb, MQNIC_RB_DRP_CMAC_REG_TX_CTRL,
+			MQNIC_RB_DRP_CMAC_TX_CTRL_TX_ENABLE);
+
+	if (ret)
+		return ret;
+
+	return mqnic_drp_write(rb, MQNIC_RB_DRP_CMAC_REG_RX_CTRL,
+			MQNIC_RB_DRP_CMAC_RX_CTRL_RX_ENABLE);
+}
+
 const struct ethtool_ops mqnic_ethtool_ops = {
 	.get_drvinfo = mqnic_get_drvinfo,
 	.get_regs_len = mqnic_get_regs_len,
@@ -658,6 +799,8 @@ const struct ethtool_ops mqnic_ethtool_ops = {
 	.set_ringparam = mqnic_set_ringparam,
 	.get_pauseparam = mqnic_get_pauseparam,
 	.set_pauseparam = mqnic_set_pauseparam,
+	.get_fecparam = mqnic_get_fecparam,
+	.set_fecparam = mqnic_set_fecparam,
 	.get_rxnfc = mqnic_get_rxnfc,
 	.get_rxfh_indir_size = mqnic_get_rxfh_indir_size,
 	.get_rxfh = mqnic_get_rxfh,

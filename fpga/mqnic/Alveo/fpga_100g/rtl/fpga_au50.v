@@ -1044,7 +1044,7 @@ cmac_gty_wrapper #(
     .TX_SERDES_PIPELINE(0),
     .RX_SERDES_PIPELINE(0),
     .RX_CLK_FROM_TX(ETH_RX_CLK_FROM_TX),
-    .RS_FEC_ENABLE(ETH_RS_FEC_ENABLE)
+    .RS_FEC_ENABLE(ETH_RS_FEC_ENABLE[0])
 )
 qsfp_cmac_inst (
     .xcvr_ctrl_clk(clk_125mhz_int),
